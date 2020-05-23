@@ -98,6 +98,13 @@ while True:
     elif  ((-180.0 == p1.pipe_bottom.xcor() -30.0 or -180.0 == p1.pipe_bottom.xcor() or -180.0 == p1.pipe_bottom.xcor() +30.0 ) and player.ycor() -20 <= p1.pipe_bottom.ycor()+300.0):
         #print((p1.pipe_top.xcor()), (p1.pipe_top.ycor()-225), player.ycor())
         wn.bye()
+    elif (-180.0 == p1.pipe_top.xcor()+30.0):
+        roundsWon+=1
+        print ("Rounds Won: " + str(roundsWon))
+        pen.clear()
+        pen.hideturtle()
+        pen.write(roundsWon, move=False, align="left", font=("Helvetica", 32, "normal"))
+        
     if p1.pipe_top.xcor() < -300:
         limit = random.randint(0, 350)
         p1.pipe_top.setx(200)
