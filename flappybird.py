@@ -12,6 +12,14 @@ wn.tracer(0)
 wn.register_shape("smallBirdGif.gif")
 wn.register_shape("3x30Pipe.gif")
 
+pen = turtle.Turtle()
+pen.speed(0)
+pen.hideturtle()
+pen.penup()
+pen.color("white")
+pen.goto(0, 250)
+pen.write("0", move=False, align="left", font=("Helvetica", 32, "normal"))
+
 
 player=turtle.Turtle()
 
@@ -35,6 +43,7 @@ class pipes:
     pipe_top.goto (200, (250+limit))
     pipe_top.dx = -2
     pipe_top.dy= 0
+    pipe_top.value=1
 
     pipe_bottom= turtle.Turtle()
     pipe_bottom.speed(0)
@@ -50,14 +59,13 @@ class pipes:
 gravity = -0.4
 
 def goUp():
-    player.dy += 7.5
+    player.dy += 8
 
 wn.listen()
 wn.onkeypress(goUp, "space")
-    
+
 p1=pipes()
 
-  
 #main game loop
 roundsWon=0
 while True:
@@ -84,16 +92,16 @@ while True:
     x += p1.pipe_bottom.dx
     p1.pipe_bottom.setx(x)
     
-    if (-180.0 == p1.pipe_top.xcor() and player.ycor()>= p1.pipe_top.ycor() -230.0):
+    if ((-180.0 == p1.pipe_top.xcor() -30.0 or -180.0 == p1.pipe_top.xcor() or -180.0 == p1.pipe_top.xcor() +30.0 )and player.ycor()+20.0 >= p1.pipe_top.ycor() -300.0):
         #print((p1.pipe_top.xcor()), (p1.pipe_top.ycor()-225), player.ycor())
         wn.bye()
-    elif (-180.0 == p1.pipe_bottom.xcor() and player.ycor() <= p1.pipe_bottom.ycor()+225.0):
+    elif  ((-180.0 == p1.pipe_bottom.xcor() -30.0 or -180.0 == p1.pipe_bottom.xcor() or -180.0 == p1.pipe_bottom.xcor() +30.0 ) and player.ycor() -20 <= p1.pipe_bottom.ycor()+300.0):
         #print((p1.pipe_top.xcor()), (p1.pipe_top.ycor()-225), player.ycor())
         wn.bye()
     if p1.pipe_top.xcor() < -300:
         limit = random.randint(0, 350)
         p1.pipe_top.setx(200)
-        p1.pipe_top.sety(250+limit)
+        p1.pipe_top.sety(300+limit)
         p1.pipe_bottom.setx(200)
         p1.pipe_bottom.sety(limit-500)
     
